@@ -1,0 +1,52 @@
+﻿@model SMMC.Models.EnrollmentMusicClass
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Add Student</h2>
+
+<hr />
+
+@if (ViewData["Error"] != null)
+{
+<p>@ViewData["Error"]</p>
+
+<a asp-controller="Enrollments"
+   asp-action="Index">  
+    Enrollments
+</a>
+<br />
+}
+else
+{
+<div class="row">
+
+
+    <div class="col-md-4">
+        <form asp-action="AddStudent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EnrollmentId" class="control-label">Unenrolled Students:</label>
+                <select asp-for="EnrollmentId" class="form-control" asp-items="ViewBag.Enrollment"></select>
+            </div>
+            <input type="hidden" asp-for="MusicClassId" value=@ViewData["ID"] />
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+}
+
+<div>
+    <a asp-controller="MusicClasses"
+       asp-action="Edit"
+       asp-route-id=@ViewData["ID"]>
+        Back
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

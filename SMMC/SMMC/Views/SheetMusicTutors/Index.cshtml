@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SMMC.Models.SheetMusicTutor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Current Loans</h2>
+
+<p>
+    <a asp-action="Create">Create new loan</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Amount Loaned
+            </th>
+            <th>
+                Sheet Music
+            <th>
+                @Html.DisplayNameFor(model => model.Tutor)
+            </th>
+
+            <th>
+               Date Loaned
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    if (item.DateReturned == null)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountLoaned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SheetMusic.Title)
+                :
+                @Html.DisplayFor(modelItem => item.SheetMusic.Composer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tutor.Staff.Person.FirstName)
+                @Html.DisplayFor(modelItem => item.Tutor.Staff.Person.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateLoaned)                
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SheetMusicTutorId">Return</a> |
+                @*<a asp-action="Details" asp-route-id="@item.SheetMusicTutorId">Details</a> |*@
+                <a asp-action="Delete" asp-route-id="@item.SheetMusicTutorId">Delete</a>
+            </td>
+        </tr>
+    }
+}
+    </tbody>
+</table>

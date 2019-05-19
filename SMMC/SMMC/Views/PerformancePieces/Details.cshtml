@@ -1,0 +1,30 @@
+﻿@model SMMC.Models.PerformancePiece
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PerformancePiece</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Performance)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Performance.PerformanceId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Piece)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Piece.PieceId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PerformancePieceId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

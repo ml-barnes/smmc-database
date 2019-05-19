@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SMMC.Models.EnrollmentMusicClass>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Classes</h2>
+
+<p>
+   
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Start Date
+            </th>
+            <th>
+                End Date
+            </th>
+            <th>
+                Lesson Time
+            </th>
+            <th>
+                Instrument
+            </th>
+            <th>
+                Grade
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicClass.Tutor)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.MusicClass.StartDate.ToShortDateString()
+            </td>
+            <td>
+                @item.MusicClass.EndDate.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusicClass.LessonTime.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enrollment.Instrument.Instrument1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enrollment.Grade)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusicClass.Tutor.Staff.Person.FirstName)
+                @Html.DisplayFor(modelItem => item.MusicClass.Tutor.Staff.Person.LastName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MusicClassId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MusicClassId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MusicClassId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

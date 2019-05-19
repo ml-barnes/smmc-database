@@ -1,0 +1,16 @@
+﻿@model SMMC.Models.PerformancePiece
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure you want to remove piece?</h3>
+<div>    
+    <hr />    
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PerformancePieceId" />
+        <input type="submit" value="Remove" class="btn btn-default" /> |
+        <a asp-action="Index" asp-controller="Performances">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SMMC.Models.Performance>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Performances</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Venue)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Date.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Venue.VenueName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PerformanceId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PerformanceId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PerformanceId">Delete</a> |
+
+                @if (item.Date.Month == 11)
+                {
+                    <a asp-action="Create" asp-controller="PerformancePieces" asp-route-id="@item.PerformanceId">Add Piece</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

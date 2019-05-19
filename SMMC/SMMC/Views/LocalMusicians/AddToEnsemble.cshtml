@@ -1,0 +1,31 @@
+﻿@model SMMC.Models.LocalMusicians
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Add to Ensemble</h2>
+
+
+<hr />
+<p>Are you sure you want to add this musician to the community orchestra ensemble?</p>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ConfirmAddToEnsemble">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="LocalMusiciansId" />
+            <div class="form-group">
+                <input type="submit" value="Confirm" class="btn btn-default" />
+
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

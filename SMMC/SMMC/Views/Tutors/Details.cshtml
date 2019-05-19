@@ -1,0 +1,65 @@
+﻿@model SMMC.ViewModels.TutorCreateViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Details</div>
+    <div class="card-body">
+        <h4 class="card-title">
+            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.LastName)
+        </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                Address: @Html.DisplayFor(model => model.Address)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Email: @Html.DisplayFor(model => model.Email)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Phone: @Html.DisplayFor(model => model.Phone)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Weekly Hours: @Html.DisplayFor(model => model.Hours)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Can Teach:
+            </dt>
+            @foreach (var item in Model.InstrumentsCanTeach)
+            {
+                <dd>
+                    @item
+                </dd>
+            }
+            <dt>
+                Currently Teaching:
+            </dt>
+            @if (Model.InstrumentsTeaching != null)
+            {
+                @foreach (var item in Model.InstrumentsTeaching)
+                {
+                    <dd>
+                        @item
+                    </dd>
+                }
+            }
+        </dl>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

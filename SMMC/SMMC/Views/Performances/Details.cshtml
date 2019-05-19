@@ -1,0 +1,60 @@
+﻿@model SMMC.Models.Performance
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Performance</h4>
+    <hr />
+    <div class="card border-primary mb-3" style="max-width: 20rem;">
+        <div class="card-header">@Model.Date.ToShortDateString()</div>
+        <div class="card-body">
+            <dl class="dl-horizontal">
+                <dt>
+                    Time: @Model.Time
+                </dt>
+                <dd>
+
+                </dd>
+                <dt>
+                    Vanue: @Html.DisplayFor(model => model.Venue.VenueName)
+                </dt>
+                <dd>
+
+                </dd>
+                <dt>
+                    Performing:
+                </dt>
+                <dd>
+                    @foreach (var item in Model.EnsemblePerformance)
+                    {
+
+                        @item.Ensemble.Type <br />
+
+                    }
+
+                </dd>
+                <dt>
+                    Pieces
+                </dt>
+
+                <dd>
+                    @foreach (var item in ViewBag.Pieces)
+                    {
+                        @item.Piece.Title <a asp-action="Delete" asp-controller="PerformancePieces" asp-route-id="@item.PerformancePieceId">Remove</a>
+                        <br />
+                    }
+                </dd>
+
+
+            </dl>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PerformanceId">Edit</a> |;
+    <a asp-action="Index">Back to List</a>
+</div>

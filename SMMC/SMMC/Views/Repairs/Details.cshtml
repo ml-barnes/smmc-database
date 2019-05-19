@@ -1,0 +1,36 @@
+﻿@model SMMC.Models.Repairs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Repairs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RepairEnd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RepairEnd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.InstrumentInventory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InstrumentInventory.Manufacturer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Technician)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Technician.TechnicianId)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

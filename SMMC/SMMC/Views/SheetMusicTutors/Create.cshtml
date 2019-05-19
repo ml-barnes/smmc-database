@@ -1,0 +1,78 @@
+﻿@model SMMC.Models.SheetMusicTutor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@section Styles
+    {
+    <style type="text/css">
+        /* The alert message box */
+        .alert {
+            padding: 20px;
+            background-color: red;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            /* When moving the mouse over the close button */
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+}
+
+<h2>Loan Sheet Music</h2>
+
+@if (ViewData["Error"] != null)
+{
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        @ViewData["Error"]
+    </div>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label for="SheetMusicId" class="control-label">Sheet Music</label>
+                <select asp-for="SheetMusicId" class="form-control" asp-items="ViewBag.SheetMusic"></select>
+            </div>
+            <div class="form-group">
+                <label for="TutorId" class="control-label">Tutor</label>
+                <select asp-for="TutorId" class="form-control" asp-items="ViewBag.Tutor"></select>
+            </div>
+            <div class="form-group">
+                <label for="AmountLoaned" class="control-label">Quantity</label>
+                <input asp-for="AmountLoaned" class="form-control" min="1"/>
+                <span asp-validation-for="AmountLoaned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Loan" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,33 @@
+﻿@model SMMC.Models.Repairs
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Repairs</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="InstrumentInventoryId" />
+            <input type="hidden" asp-for="TechnicianId" />
+            <input type="hidden" asp-for="RepairStart" />            
+            <label asp-for="Notes">Notes</label>
+            <textarea asp-for="Notes" rows="4" cols="50">@Model.Notes</textarea>                            
+            <div class="form-group">
+                <input type="submit" value="Complete" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

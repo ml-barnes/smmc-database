@@ -1,0 +1,96 @@
+﻿@model IEnumerable<SMMC.Models.Loan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles
+    {
+    <style type="text/css">
+        /* The alert message box */
+        .alert {
+            padding: 20px;
+            background-color: @ViewData["Color"]; 
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            /* When moving the mouse over the close button */
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+}
+
+<h2>Loans</h2>
+
+@if (ViewData["Feedback"] != null)
+{
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+         @ViewData["Feedback"]
+    </div>
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateLoaned)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollment)
+            </th>
+            <th>
+                Instrument
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            @if (item.DateReturned == null)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateLoaned)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Enrollment.Student.Person.FirstName)
+                        @Html.DisplayFor(modelItem => item.Enrollment.Student.Person.LastName)
+                        <b>: Grade </b>
+                        <b>@Html.DisplayFor(modelItem => item.Enrollment.Grade)</b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InstrumentInventory.Instrument.Instrument1)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Return", "Edit", new { id1 = item.Enrollment.EnrollmentId, id2 = item.InstrumentInventory.InstrumentInventoryId })
+                        @Html.ActionLink("Repair", "Repair", new { id1 = item.Enrollment.EnrollmentId, id2 = item.InstrumentInventory.InstrumentInventoryId })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+

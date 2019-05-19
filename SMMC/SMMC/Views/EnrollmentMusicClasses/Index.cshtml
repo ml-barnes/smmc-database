@@ -1,0 +1,47 @@
+﻿@model IEnumerable<SMMC.Models.EnrollmentMusicClass>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MusicClass)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Enrollment.EnrollmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MusicClass.MusicClassId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id1 = item.EnrollmentId, id2 = item.MusicClassId /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { id1 = item.EnrollmentId, id2 = item.MusicClassId/* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { id1 = item.EnrollmentId, id2 = item.MusicClassId/* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

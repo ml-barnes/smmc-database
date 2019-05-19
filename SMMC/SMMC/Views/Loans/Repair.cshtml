@@ -1,0 +1,36 @@
+﻿@model SMMC.ViewModels.RepairViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Repair</h2>
+
+<h4>Are you sure you want to log repair?</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Repair">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="InstrumentInventoryId" value="@ViewBag.InstrumentInventoryId" />
+            <input type="hidden" asp-for="EnrollmentId" value="@ViewBag.EnrollmentId" />
+            <div class="form-group">
+                <label asp-for="Notes">Notes</label>
+                <textarea asp-for="Notes" rows="4" cols="50"></textarea>
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div >
+            <div class="form-group">
+                <input type="submit" value="Repair" class="btn btn-default" />
+
+            </div>
+</form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

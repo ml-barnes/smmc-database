@@ -1,0 +1,106 @@
+﻿@model IEnumerable<SMMC.Models.Enrollment>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section Styles
+    {
+    <style type="text/css">
+        /* The alert message box */
+        .alert {
+            padding: 20px;
+            background-color: @ViewData["Color"];
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            /* When moving the mouse over the close button */
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+}
+
+@if (ViewData["Feedback"] != null)
+{
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        @ViewData["Feedback"]
+    </div>
+}
+
+<h2>Enrollments</h2>
+
+@if (ViewData["LoanError"] != null)
+{
+    <h3>@ViewData["LoanError"]</h3>
+}
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<p>
+    <a asp-action="GenerateEnsembles">Generate Ensemble</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instrument)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Student)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @item.Date.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Instrument.Instrument1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Student.Person.FirstName)
+                    @Html.DisplayFor(modelItem => item.Student.Person.LastName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.EnrollmentId">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.EnrollmentId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,89 @@
+﻿@model SMMC.Models.MusicClass
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit Class</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MusicClassId" />
+            <div class="form-group">
+                <label asp-for="TutorId" class="control-label">Tutor</label>
+                <select asp-for="TutorId" class="form-control" asp-items="ViewBag.TutorId"></select>
+                <span asp-validation-for="TutorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LessonTimeId" class="control-label">Lesson Time</label>
+                <select asp-for="LessonTimeId" class="form-control" asp-items="ViewBag.LessonTimeId"></select>
+                <span asp-validation-for="LessonTimeId" class="text-danger"></span>
+
+                <input type="hidden" asp-for="StartDate" class="form-control" />
+
+                <input type="hidden" asp-for="EndDate" class="form-control" />
+
+                <dt>
+                    <br />
+                    <u>Students</u>
+
+
+                </dt>
+                <dd>
+                    <table>
+                        @foreach (var j in Model.EnrollmentMusicClass)
+                        {
+                            var parms = new Dictionary<string, string>
+                                                        {
+                                                            { "id1", j.EnrollmentId.ToString() },
+                                                            { "id2", j.MusicClassId.ToString() }
+                                                        };
+
+                            <tr>
+                                <td>
+
+                                    @j.Enrollment.Student.Person.FirstName
+                                    @j.Enrollment.Student.Person.LastName
+                                </td>
+                                <td></td>
+                                <td>
+                                    |
+                                    <a asp-controller="MusicClasses"
+                                       asp-action="DeleteStudent"
+                                       asp-all-route-data="parms">
+                                        Remove
+                                    </a>
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+
+                </dd>                
+               
+                
+
+                    <a asp-controller="EnrollmentMusicClasses"
+                       asp-action="AddStudent"
+                       asp-route-id="@Model.MusicClassId">
+                        Add new student
+                    </a>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

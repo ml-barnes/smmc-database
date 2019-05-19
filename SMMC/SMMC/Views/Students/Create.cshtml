@@ -1,0 +1,179 @@
+﻿@model SMMC.ViewModels.StudentCreateViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script language="javascript" type="text/javascript">
+    //Guardian
+    var guardianFormElement = null;
+    var guardianDropDownElement = null
+
+    function hideGuardianForm() {
+        var guardianFormValue = document.getElementById('GuardianForm');
+        guardianFormValue.style.display = "none";
+        guardianFormElement.style.display = "inline";
+    }
+    function hideGuardianDropDown() {
+        var guardianDropDownValue = document.getElementById('guardianDropDown');
+        guardianDropDownValue.style.display = "none";
+        guardianDropDownElement.style.display = "inline";
+    }
+
+    function guardianForm(name) {
+
+        if (name == "newGuardian") {
+            guardianFormElement = GuardianForm
+            guardianDropDownElement = null
+            hideGuardianForm()
+            hideGuardianDropDown()
+        }
+        else {
+            guardianFormElement = null
+            guardianDropDownElement = guardianDropDown
+            hideGuardianDropDown()
+            hideGuardianForm()
+        }
+    }
+</script>
+
+
+@section Styles
+    {
+    <style type="text/css">
+        /* The alert message box */
+        .alert {
+            padding: 20px;
+            background-color: red;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* The close button */
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            /* When moving the mouse over the close button */
+            .closebtn:hover {
+                color: black;
+            }
+    </style>
+}
+
+@if (ViewData["Error"] != null)
+{
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        @ViewData["Error"]
+    </div>
+}
+
+<h2>Create</h2>
+
+<h4>Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dob" class="control-label"></label>
+                <input asp-for="Dob" class="form-control" type="date" runat="server" id="type" onchange="change()" />
+                <span asp-validation-for="Dob" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div id="contact" style="display:none;">
+                <h4>Contact Info: </h4>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label"></label>
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div id="guardian" style="display:none;" runat="server">
+                <h4>Guardian Info: </h4>
+                <div class="guardianCheck">
+                    <input type="radio" name="myRadios" value="1" onclick="guardianForm('existingGuardian')" id="existingGuardian" /> Existing<br />
+                    <input type="radio" name="myRadios" value="2" onclick="guardianForm('newGuardian')" id="newGuardian" /> New
+                </div>
+                <div id="guardianDropDown" style="display:none;">
+                    <div class="form-group">
+                        <label asp-for="GuardianDropDown" class="control-label"></label>
+                        <select asp-for="GuardianDropDown" class="form-control" asp-items="ViewBag.Guardian"></select>
+                        <span asp-validation-for="GuardianDropDown" class="text-danger"></span>
+                    </div>
+                </div>
+                <div id="GuardianForm" style="display:none">
+                    <div class="form-group">
+                        <label asp-for="GuardianFirstName" class="control-label"></label>
+                        <input asp-for="GuardianFirstName" class="form-control" />
+                        <span asp-validation-for="GuardianFirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GuardianLastName" class="control-label"></label>
+                        <input asp-for="GuardianLastName" class="form-control" />
+                        <span asp-validation-for="GuardianLastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GuardianDob" class="control-label"></label>
+                        <input asp-for="GuardianDob" class="form-control" type="date" runat="server" id="type" onchange="change()" />
+                        <span asp-validation-for="GuardianDob" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GuardianAddress" class="control-label"></label>
+                        <input asp-for="GuardianAddress" class="form-control" />
+                        <span asp-validation-for="GuardianAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GuardianEmail" class="control-label"></label>
+                        <input asp-for="GuardianEmail" class="form-control" />
+                        <span asp-validation-for="GuardianEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="GuardianPhone" class="control-label"></label>
+                        <input asp-for="GuardianPhone" class="form-control" />
+                        <span asp-validation-for="GuardianPhone" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,57 @@
+﻿@model SMMC.Models.Staff
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Details</div>
+    <div class="card-body">
+        <h4 class="card-title">
+            @Html.DisplayFor(model => model.Person.FirstName)
+            @Html.DisplayFor(model => model.Person.LastName)
+        </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                Address: @Html.DisplayFor(model => model.Person.Address)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Email: @Html.DisplayFor(model => model.Contact.Email)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Phone: @Html.DisplayFor(model => model.Contact.Phone)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Weekly Hours: @Html.DisplayFor(model => model.Hours)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Start Date: @Model.StartDate.ToShortDateString()
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Left Date: @Model.LeftDate
+            </dt>
+            <dd>
+
+            </dd>
+        </dl>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.StaffId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

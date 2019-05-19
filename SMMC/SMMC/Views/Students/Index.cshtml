@@ -1,0 +1,60 @@
+﻿@model IEnumerable<SMMC.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Date of Birth
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.FirstName)
+                @Html.DisplayFor(modelItem => item.Person.LastName)
+            </td>
+            <td>
+                @item.Person.Dob.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Person.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Contact.Phone)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

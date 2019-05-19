@@ -1,0 +1,55 @@
+﻿@model SMMC.ViewModels.StudentCreateViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Details</div>
+    <div class="card-body">
+        <h4 class="card-title">
+            @Html.DisplayFor(model => model.FirstName)
+            @Html.DisplayFor(model => model.LastName)
+        </h4>
+        <dl class="dl-horizontal">
+            <dt>
+                Date of Birth: @Model.Dob.ToShortDateString()
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Address: @Html.DisplayFor(model => model.Address)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Email: @Html.DisplayFor(model => model.Email)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Phone: @Html.DisplayFor(model => model.Phone)
+            </dt>
+            <dd>
+
+            </dd>
+            <dt>
+                Instruments:
+            </dt>
+
+            @foreach (var item in Model.Enrollments)
+            {
+            <dd>
+                @item
+            </dd>
+            }
+        </dl>
+    </div>
+</div>
+<div>
+    
+    <a asp-action="Index">Back to List</a>
+</div>

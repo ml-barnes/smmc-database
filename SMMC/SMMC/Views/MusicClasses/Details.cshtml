@@ -1,0 +1,85 @@
+﻿@model SMMC.Models.MusicClass
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+
+
+<h2>Class Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Instrument: @ViewBag.Instrument
+        </dt>
+        <dd>
+            
+        </dd>
+        <dt>
+            Grade: @ViewBag.Grade
+        </dt>
+        <dd>
+            
+        </dd>
+        <dt>
+            Start Date: @Model.StartDate.ToShortDateString()
+        </dt>
+        <dd>
+            
+        </dd>
+        <dt>
+            End Date:  @Model.EndDate.ToShortDateString()
+        </dt>
+        <dd>
+            
+        </dd>
+        <dt>
+            Lesson Time: @Html.DisplayFor(model => model.LessonTime.Time)
+        </dt>
+        <dd>
+            
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutor): @Html.DisplayFor(model => model.Tutor.Staff.Person.FirstName)
+            @Html.DisplayFor(model => model.Tutor.Staff.Person.LastName)
+        </dt>
+        <dd>
+            
+        </dd>
+        <dt>
+            <u>Students</u>
+
+            @*<div class="form-group">
+
+                <select class="form-control" asp-items="ViewBag.test"></select>
+            </div>*@
+        </dt>
+        <dd>
+            <table>
+                @foreach (var j in Model.EnrollmentMusicClass)
+                {
+                    var parms = new Dictionary<string, string>
+                    {
+                        { "id1", j.EnrollmentId.ToString() },
+                        { "id2", j.MusicClassId.ToString() }
+                    };
+
+                <tr>
+                    <td>                        
+                        @j.Enrollment.Student.Person.FirstName
+                        @j.Enrollment.Student.Person.LastName 
+                    </td> 
+                </tr>
+                 }
+            </table>
+</dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MusicClassId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

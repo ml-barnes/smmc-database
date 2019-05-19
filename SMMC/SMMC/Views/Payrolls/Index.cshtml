@@ -1,0 +1,61 @@
+﻿@model IEnumerable<SMMC.Models.Payroll>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Payroll</h2>
+
+<p>
+    <a asp-action="GeneratePayroll">Generate Payroll</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Staff ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Amount Paid
+            </th>
+            <th>
+                Notes
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.StaffId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Staff.Person.FirstName)
+                @Html.DisplayFor(modelItem => item.Staff.Person.LastName)
+            </td>
+            <td>
+                @item.Date.ToShortDateString()
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PayrollId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.PayrollId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.PayrollId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

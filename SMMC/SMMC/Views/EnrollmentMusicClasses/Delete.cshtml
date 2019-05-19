@@ -1,0 +1,40 @@
+﻿@model SMMC.Models.EnrollmentMusicClass
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>EnrollmentMusicClass</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Enrollment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Enrollment.EnrollmentId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MusicClass)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MusicClass.MusicClassId)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="EnrollmentId" />
+        <input type="hidden" asp-for="MusicClassId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

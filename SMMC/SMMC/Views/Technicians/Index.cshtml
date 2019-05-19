@@ -1,0 +1,72 @@
+﻿@model IEnumerable<SMMC.Models.Technician>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link" href="https://localhost:44309/staffs">All</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="https://localhost:44309/tutors">Tutors</a>
+    </li>
+    <li>
+        <a class="nav-link active" href="https://localhost:44309/technicians">Technicians</a>
+    </li>
+</ul>
+<br />
+<h2>Technicians</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Address
+            </th>
+            <th>
+                Hours
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Phone
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Person.FirstName)
+                    @Html.DisplayFor(modelItem => item.Staff.Person.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Person.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Hours)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Contact.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Staff.Contact.Phone)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.TechnicianId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.TechnicianId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.TechnicianId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<SMMC.Models.Repairs>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Incomplete Repairs</h2>
+
+@Html.ActionLink("View Completed", "Complete")
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Instrument
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technician)
+            </th>
+            <th>
+                Date
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            if (@item.RepairEnd == null)
+            {
+                <tr>
+                    <td>
+                        ID: @item.InstrumentInventory.InstrumentId (@item.InstrumentInventory.Instrument.Instrument1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Technician.Staff.Person.FirstName)
+                        @Html.DisplayFor(modelItem => item.Technician.Staff.Person.LastName)
+                    </td>
+                    <td>
+                        @item.RepairStart.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.ActionLink("Complete", "Edit", new { id1 = item.Technician.TechnicianId, id2 = item.InstrumentInventory.InstrumentInventoryId })
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+

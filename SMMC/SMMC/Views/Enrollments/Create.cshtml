@@ -1,0 +1,51 @@
+﻿@model SMMC.Models.Enrollment
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>Enrollment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="InstrumentId" class="control-label"></label>
+                <select asp-for="InstrumentId" class="form-control" asp-items="ViewBag.InstrumentId"></select>
+            </div> 
+
+            <div class="form-group">
+                <label for="loan" class="control-label">Loan Needed</label>
+                <input id="loan" type="checkbox" name="loan" value="1">
+            </div>
+            <div class="form-group">
+                <label for="paid" class="control-label">Paid</label>
+                <input id="paid" type="checkbox" name="paid" value="1">
+            </div>
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <select asp-for="StudentId" class="form-control" asp-items="ViewBag.Student"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Grade" class="control-label"></label>
+                <select asp-for="Grade" class="form-control" asp-items="ViewBag.Grade"></select>
+                <span asp-validation-for="Grade" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

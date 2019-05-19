@@ -1,0 +1,48 @@
+﻿@model IEnumerable<SMMC.Models.TutorType>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tutor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instrument)
+            </th>
+            <th>
+                Max Grade
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tutor.Staff.Person.FirstName)
+                @Html.DisplayFor(modelItem => item.Tutor.Staff.Person.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instrument.Instrument1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxGrade)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TutorTypeId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TutorTypeId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TutorTypeId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

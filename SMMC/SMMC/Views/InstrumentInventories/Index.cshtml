@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SMMC.Models.InstrumentInventory>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Instrument Inventory</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Recieved Date
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manufacturer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Instrument)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.PurchaseDate.ToShortDateString()
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manufacturer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Instrument.Instrument1)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.InstrumentInventoryId">Edit</a> |                
+                <a asp-action="Delete" asp-route-id="@item.InstrumentInventoryId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,36 @@
+﻿@model SMMC.Models.SheetMusicTutor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SheetMusicTutor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AmountLoaned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AmountLoaned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SheetMusic)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SheetMusic.SheetMusicId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutor)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tutor.TutorId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SheetMusicTutorId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

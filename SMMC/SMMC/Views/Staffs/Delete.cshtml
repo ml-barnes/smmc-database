@@ -1,0 +1,21 @@
+﻿@model SMMC.Models.Staff
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <h4>Staff</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <p>Are you sure you want to delete @Html.DisplayNameFor(model => model.Person.FirstName) @Html.DisplayNameFor(model => model.Person.LastName) as Staff?</p>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="StaffId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

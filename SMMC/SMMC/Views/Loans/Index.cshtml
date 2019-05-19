@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SMMC.Models.Loan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DateLoaned)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Enrollment)
+            </th>
+            <th>
+                Instrument
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model)
+{
+
+    @if (item.DateReturned == null)
+    { 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateLoaned)
+            </td>            
+            <td>
+                @Html.DisplayFor(modelItem => item.Enrollment.Student.Person.FirstName)
+                @Html.DisplayFor(modelItem => item.Enrollment.Student.Person.LastName)
+                <b>: Grade </b>
+                <b>@Html.DisplayFor(modelItem => item.Enrollment.Grade)</b>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InstrumentInventory.Instrument.Instrument1)
+            </td>
+            <td>
+                @Html.ActionLink("Return", "Edit", new { id1 = item.Enrollment.EnrollmentId, id2 = item.InstrumentInventory.InstrumentInventoryId }) |
+                @Html.ActionLink("Repair", "Repair", new { id1 = item.Enrollment.EnrollmentId, id2 = item.InstrumentInventory.InstrumentInventoryId })
+            </td>
+        </tr>
+    }
+}
+    </tbody>
+</table>
