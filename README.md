@@ -3,7 +3,7 @@ Web application designed for Music Teaching Organisations to manage students, tu
 
 
 # Conceptual ERD
-![Conceptual ERD](/images/Conceptial_ERD.png)
+![Conceptual ERD](/images/Conceptual_ERD.png)
 
 # Relational Model
 ![Relational Model](/images/Relational_Model.png)
